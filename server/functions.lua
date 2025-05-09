@@ -469,26 +469,7 @@ end
 ---@param item string
 ---@param data function
 function QBCore.Functions.CreateUseableItem(item, data)
-    local rawFunc = nil
-
-    if type(data) == 'table' then
-        if rawget(data, '__cfx_functionReference') then
-            rawFunc = data
-        elseif data.cb and rawget(data.cb, '__cfx_functionReference') then
-            rawFunc = data.cb
-        elseif data.callback and rawget(data.callback, '__cfx_functionReference') then
-            rawFunc = data.callback
-        end
-    elseif type(data) == 'function' then
-        rawFunc = data
-    end
-
-    if rawFunc then
-        QBCore.UsableItems[item] = {
-            func = rawFunc,
-            resource = GetInvokingResource()
-        }
-    end
+    QBCore.UsableItems[item] = data
 end
 
 ---Checks if the given item is usable
@@ -502,8 +483,8 @@ end
 ---@param source any
 ---@param item string
 function QBCore.Functions.UseItem(source, item)
-    if GetResourceState('qb-inventory') == 'missing' then return end
-    exports['qb-inventory']:UseItem(source, item)
+    if GetResourceState('qs-inventory') == 'missing' then return end
+    exports['qs-inventory']:UseItem(source, item)
 end
 
 ---Kick Player
@@ -699,8 +680,8 @@ end
 ---@param amount number
 ---@return boolean
 function QBCore.Functions.HasItem(source, items, amount)
-    if GetResourceState('qb-inventory') == 'missing' then return end
-    return exports['qb-inventory']:HasItem(source, items, amount)
+    if GetResourceState('qs-inventory') == 'missing' then return end
+    return exports['qs-inventory']:HasItem(source, items, amount)
 end
 
 ---Notify

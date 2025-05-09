@@ -45,7 +45,7 @@ function QBCore.Functions.GetCoords(entity)
 end
 
 function QBCore.Functions.HasItem(items, amount)
-    return exports['qb-inventory']:HasItem(items, amount)
+    return exports['qs-inventory']:HasItem(items, amount)
 end
 
 ---Returns the full character name
